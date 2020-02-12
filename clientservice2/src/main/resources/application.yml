@@ -3,6 +3,20 @@ server:
 spring:
   application:
     name: service-sms
+  activemq:
+    broker-url: tcp://192.168.24.42:61616
+    user: admin
+    password: admin
+    in-memory: true
+    #如果此处设置为true，需要加如下的依赖包
+    #          <groupId>org.apache.activemq</groupId>
+    #          <artifactId>activemq-pool</artifactId>
+    # 否则会自动配置失败，报JmsMessagingTemplate注入失败
+    pool:
+      enabled: false
+  # 启用 topic 模式 必须发送端与接收端配置保持一致
+  jms:
+    pub-sub-domain: false
 eureka:
   client:
     serviceUrl:
