@@ -36,17 +36,19 @@ public class OrderController {
 
     /**
      * 测试MQ发送信息
+     *
      * @param msg
      * @return
      */
     @RequestMapping("/mq/hi")
     public String sendMsg(@RequestParam String msg) {
-        producerService.sendMessage("test_hua", msg );
+        producerService.sendMessage("test_hua", msg);
         return "发送成功";
     }
 
     /**
      * 测试MQ发送信息 多类型
+     *
      * @param msg
      * @return
      */
@@ -58,5 +60,24 @@ public class OrderController {
 
         }
         return "发送成功";
+    }
+
+    /**
+     * 测试MQ 数据量 发送信息
+     *
+     * @param msg
+     * @return
+     */
+    @RequestMapping("/mq/big")
+    public String sendBig(@RequestParam String msg, @RequestParam Integer c) {
+        Long s = System.currentTimeMillis();
+        for (int i = 0; i < c; i++) {
+            //producerService.sendMessage("test_hua", msg+i );
+            producerService.sendMessageByQueue("test_hua", msg + i);
+
+        }
+        Long t = System.currentTimeMillis() - s;
+        System.out.println((s / 1000) + " S");
+        return "大数据发送成功:time>" + t;
     }
 }

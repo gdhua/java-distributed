@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(value = "service-sms")
 public interface SmsService {
-    @RequestMapping(value = "/sms/hi",method = RequestMethod.GET)
+    @RequestMapping(value = "/sms/hi", method = RequestMethod.GET)
     String sayHiFromClientOne(@RequestParam(value = "name") String name);
 }

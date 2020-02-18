@@ -12,8 +12,9 @@ public class SmsController {
 
     @Value("${server.port}")
     String port;
+
     @RequestMapping("/sms/hi")
     public String home(@RequestParam String name) {
-        return "hi "+name+",i am from port:" +port;
+        return "hi " + name + ",i am from port:" + port;
     }
 }

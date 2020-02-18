@@ -1,0 +1,28 @@
+server:
+  port: 8088
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:87/eureka/
+
+test:
+  uri: lb://service-one
+spring:
+  application:
+    name: gateway-client
+  cloud:
+    gateway:
+      routes:
+        - id: route_service_one
+          uri: ${test.uri} # uri以lb://开头（lb代表从注册中心获取服务），后面接的就是你需要转发到的服务名称
+          predicates:
+            - Path=/user/**
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+
+

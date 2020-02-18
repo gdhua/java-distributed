@@ -5,10 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
 import org.springframework.jms.annotation.EnableJms;
+
 import javax.jms.ConnectionFactory;
 
 /**
- *  同时支持接收队列 与 主题配置
+ * 同时支持接收队列 与 主题配置
  */
 @Configuration
 @EnableJms

@@ -16,26 +16,28 @@ public class ConsumerServiceImpl {
 
     /**
      * 指定接收队列 类型
+     *
      * @param text
      * @return
      */
-  @JmsListener(destination = "test_hua", containerFactory = "queueListenerFactory")
+    @JmsListener(destination = "test_hua", containerFactory = "queueListenerFactory")
     public void receiveQueue(String text) {
 
-        System.out.println("Consumer_queue 收到的报文为:"+text);
+        System.out.println("Consumer_queue 收到的报文为:" + text);
 
         //return "return message" + text;
     }
 
     /**
      * 指定接收主题 类型
+     *
      * @param text
      * @return
      */
     @JmsListener(destination = "test_hua", containerFactory = "topicListenerFactory")
     public void receiveTopic(String text) {
 
-        System.out.println("Consumer_topic 收到的报文为:"+text);
+        System.out.println("Consumer_topic 收到的报文为:" + text);
 
     }
 

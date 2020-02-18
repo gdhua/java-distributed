@@ -22,30 +22,33 @@ public class ProducerServiceImpl {
 
     /**
      * 发送消息 采用系统配置类型
+     *
      * @param queueName 是发送到的队列名称
-     * @param message 是发送到的队列
+     * @param message   是发送到的队列
      */
-    public void sendMessage(String queueName, final String message){
+    public void sendMessage(String queueName, final String message) {
         jmsTemplate.convertAndSend(queueName, message);
     }
 
     /**
      * 发送消息 采用指定主题类型
+     *
      * @param queueName 是发送到的队列
-     * @param message 是发送到的队列
+     * @param message   是发送到的队列
      */
-    public void sendMessageByTopic(String queueName, final String message){
-        Destination destination=new ActiveMQTopic(queueName);
+    public void sendMessageByTopic(String queueName, final String message) {
+        Destination destination = new ActiveMQTopic(queueName);
         jmsTemplate.convertAndSend(destination, message);
     }
 
     /**
      * 发送消息 采用指定队列类型
+     *
      * @param queueName 是发送到的队列
-     * @param message 是发送到的队列
+     * @param message   是发送到的队列
      */
-    public void sendMessageByQueue(String queueName, final String message){
-        Destination destination=new ActiveMQQueue(queueName);
+    public void sendMessageByQueue(String queueName, final String message) {
+        Destination destination = new ActiveMQQueue(queueName);
         jmsTemplate.convertAndSend(destination, message);
     }
 }

@@ -18,6 +18,7 @@
     <modules>
         <module>clientservice1</module>
         <module>clientservice2</module>
+        <module>gateway</module>
     </modules>
 
 

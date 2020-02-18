@@ -14,7 +14,7 @@ spring:
     # 否则会自动配置失败，报JmsMessagingTemplate注入失败
     pool:
       enabled: false
-# 启用 topic 模式
+  # 启用 topic 模式
   jms:
     pub-sub-domain: true
 eureka:
