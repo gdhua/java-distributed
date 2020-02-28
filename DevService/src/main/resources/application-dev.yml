@@ -1,0 +1,114 @@
+logging:
+  config: classpath:logback-spring.xml
+mybatis-plus:
+  mapper-locations: classpath:mapper/*/*.xml
+server:
+  port: 8071
+spring:
+  application:
+    name: dev-server
+  activemq:
+    broker-url: tcp://192.168.24.42:61616
+    user: admin
+    password: admin
+    in-memory: true
+      #如果此处设置为true，需要加如下的依赖包
+      #          <groupId>org.apache.activemq</groupId>
+      #          <artifactId>activemq-pool</artifactId>
+      # 否则会自动配置失败，报JmsMessagingTemplate注入失败
+    pool:
+      enabled: false
+  thymeleaf:
+    cache: false # 开发时关闭缓存,不然没法看到实时页面
+    mode: LEGACYHTML5 # 用非严格的 HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    prefix: classpath:/templates/
+    suffix: .html
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 20MB
+  jackson:
+    time-zone: GMT+8
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+      FAIL_ON_EMPTY_BEANS: false
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+    default-property-inclusion: non_null
+    mapper:
+      PROPAGATE_TRANSIENT_MARKER: true
+    parser:
+      ALLOW_BACKSLASH_ESCAPING_ANY_CHARACTER: true
+  liquibase:
+    enabled: false
+  datasource:
+    url: jdbc:mysql://192.168.24.42:3306/kyc?timeZone=TMC&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    username: root
+    password: jx82222777
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      auto-commit: false
+      connection-timeout: 30000
+      idle-timeout: 25000
+      login-timeout: 5
+      max-lifetime: 30000
+      read-only: false
+      validation-timeout: 3000
+      maximum-pool-size: 15
+      minimum-idle: 10
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        useLocalSessionState: true
+        rewriteBatchedStatements: true
+        cacheResultSetMetadata: true
+        cacheServerConfiguration: true
+        elideSetAutoCommits: true
+        maintainTimeStats: false
+sys-param:
+  sys:
+    SYS_DOMAIN_BACKEND_URL: http://localhost
+    SYS_DOMAIN_FRONT_URL: http://localhost
+    SYS_IMG_DOWNLOAD_URL: http://imgdev.jxwifi.com/imgCommon/downloadFile/
+    SYS_IMG_UPLOAD_LOAD_URL: http://imgdev.jxwifi.com/imgCommon/xcx_upload/kyc/img/
+    SYS_PUSH_URL: http://card.jxwifi.com/push.html?u=
+    JWT_SECRET: jx1234567890
+    AES_PASS: JXWIFIXXJXWIFIXX
+    AES_IV: JXWIFIXXJXWIFIXX
+    RUN_APP_NAME: web
+  ali:
+    ALI_ACCESS_KEY_ID: LTAISRQx256HtUvN
+    ALI_ACCESS_CECRET_ID: yQrREAWzk3DHa6UXVXfZf5JxtbKNoY
+    ALI_SMS_SIGN_NAME: 嘉讯
+    ALI_SMS_MODE_CAPTCHA: SMS_155815071
+    ALI_SMS_MODE_MEMBER_REG: SMS_155815071
+    ALI_SMS_MODE_AUDIT_FAIL: SMS_155815071
+    ALI_SMS_MODE_AUDIT_SUCCESS: SMS_155815071
+  alipay:
+    app_cert_path: D:/jx2019/卡密/支付宝/appCertPublicKey_2019111469161295.crt
+    alipay_cert_path: D:/jx2019/卡密/支付宝/alipayCertPublicKey_RSA2.crt
+    alipay_root_cert_path: D:/jx2019/卡密/支付宝/alipayRootCert.crt
+  wx:
+    WX_OPEN_APPID: wx9dc2c24c7b4bb27e
+    WX_OPEN_APPSECRET: 9e2902b444067dcbfa4d5f792794222a
+    WX_GZH_APPID: wx5fe070e76a274d6c
+    WX_GZH_SECRET: 77fe24cb10f60d8a2bfba876926d6088
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.24.42:8140/eureka/
